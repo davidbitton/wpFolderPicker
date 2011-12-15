@@ -2,17 +2,17 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:FolderPickerLib"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Converters="clr-namespace:FolderPickerLib.Converters"
              mc:Ignorable="d" 
              x:Name="pickerControl"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <local:DriveIconConverter x:Key="DriveIconConverter"/>
+      <Converters:FileIconImageConverter x:Key="FileIconImageConverter"/>
         <ContextMenu x:Key="TreeItemContextMenu">
-            <MenuItem Header="Create" Click="CreateMenuItem_Click"/>
-            <MenuItem Header="Rename" Click="RenameMenuItem_Click"/>
-            <MenuItem Header="Delete" Click="DeleteMenuItem_Click"/>
+            <MenuItem Header="Create" Click="CreateMenuItemClick"/>
+            <MenuItem Header="Rename" Click="RenameMenuItemClick"/>
+            <MenuItem Header="Delete" Click="DeleteMenuItemClick"/>
         </ContextMenu>
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot">
@@ -20,14 +20,14 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TreeView x:Name="TreeView" 
-                  ItemsSource="{Binding ElementName=pickerControl,Path=Root.Childs}"
+        <TreeView x:Name="TreeView" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ItemsSource="{Binding ElementName=pickerControl,Path=Root.Children}"
                   ItemContainerStyle="{Binding ElementName=pickerControl,Path=ItemContainerStyle}"
-                  TreeViewItem.Expanded="TreeView_Expanded" TreeViewItem.Selected="TreeView_Selected">
+                  TreeViewItem.Expanded="TreeViewExpanded" TreeViewItem.Selected="TreeViewItemSelected">
             <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource ="{Binding Childs}">
+                <HierarchicalDataTemplate ItemsSource ="{Binding Children}">
                     <StackPanel Orientation="Horizontal" ContextMenu="{StaticResource TreeItemContextMenu}">
-                        <Image Height="16" Width="16" Source="{Binding Converter={StaticResource DriveIconConverter}}"/>
+                        <Image Height="16" Width="16" Source="{Binding Converter={StaticResource FileIconImageConverter}}"/>
                         <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
                     </StackPanel>
                 </HierarchicalDataTemplate>

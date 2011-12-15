@@ -36,6 +36,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -44,15 +45,23 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\FileIconImageConverter.cs" />
+    <Compile Include="Model\DriveTreeItem.cs" />
     <Compile Include="FolderPickerControl.xaml.cs">
       <DependentUpon>FolderPickerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="FolderPickerDialog.xaml.cs">
       <DependentUpon>FolderPickerDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\IconHelper.cs" />
+    <Compile Include="Helpers\Shell32.cs" />
+    <Compile Include="Helpers\User32.cs" />
     <Compile Include="InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\NullToBoolConverter.cs" />
+    <Compile Include="LinqExtensions.cs" />
+    <Compile Include="Model\NotifiableObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -66,7 +75,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TreeModel.cs" />
+    <Compile Include="Model\TreeItem.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -76,24 +85,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\shell32_10.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\shell32_12.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\shell32_264.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\shell32_303.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\shell32_8.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\shell32_9.ico" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="FolderPickerControl.xaml">
@@ -109,6 +100,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
