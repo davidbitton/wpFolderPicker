@@ -37,6 +37,7 @@ namespace FolderPickerLib {
                 return _root;
             }
             private set {
+                if(value == _root) return;
                 _root = value;
                 NotifyPropertyChanged(() => Root);
             }
@@ -47,6 +48,7 @@ namespace FolderPickerLib {
                 return _selectedItem;
             }
             private set {
+                if(value == _selectedItem) return;
                 _selectedItem = value;
                 NotifyPropertyChanged(() => SelectedItem);
             }
@@ -77,6 +79,7 @@ namespace FolderPickerLib {
                 return _itemContainerStyle;
             }
             set {
+                if(value == _itemContainerStyle) return;
                 _itemContainerStyle = value;
                 OnPropertyChanged("ItemContainerStyle");
             }
